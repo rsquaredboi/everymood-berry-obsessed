@@ -1,0 +1,33 @@
+# QA artifacts (regenerable, not source)
+qa/
+qa2/
+qa-final/
+qa-diff/
+qa-screenshots/
+clone-test/
+preview*.png
+clone-*.png
+
+# Server logs
+*.log
+em-server.log
+smooche-server.log
+
+# Server PIDs
+*.pid
+
+# Claude/IDE config
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+.venv/
+
+# Node (in case anything gets dropped)
+node_modules/
+package-lock.json
