@@ -23,14 +23,17 @@
     anchorPrice: 34.00,
     checkoutUrl: 'https://everymood.com/cart',
     upsell: {
-      name: 'Travel Berry Mini (50mL)',
-      desc: 'Toss it in your bag. The Berry Obsessed scent in pocket size.',
-      price: 14.00,
-      original: 22.00,
+      name: 'Vanilla Soft Serve',
+      tagline: 'Body & Hair Mist · 100mL',
+      mood: 'Sweet & Flirty',
+      img: 'images/vanilla-soft-serve.png',
+      desc: 'Pairs perfectly with Berry Obsessed. Vanilla cream + soft musk for the cozier mood.',
+      price: 22.00,
+      original: 35.00,
       bullets: [
-        'Same skincare-first formula, smaller bottle',
-        'TSA-approved for carry-on travel',
-        'Refillable from your full-size bottle'
+        'Same skincare-first formula (HA + Coconut + Vit E)',
+        'Sweet & Flirty mood — vanilla cream + soft musk',
+        'Layer with Berry Obsessed for a custom scent'
       ]
     }
   };
@@ -317,9 +320,12 @@
         <button class="modal-close" aria-label="Close">×</button>
         <div class="body">
           <span class="modal-tag">★ COMMUNITY FAVORITE ADD-ON</span>
-          <div class="modal-product" style="margin-top:14px;">🍓</div>
-          <div style="color:#FFB800;font-size:13px;margin-top:12px;">★★★★★ <span style="color:#6b7280">(4.8/5)</span></div>
+          <div class="modal-product modal-product-photo">
+            <img src="${u.img}" alt="${u.name} bottle" loading="lazy">
+          </div>
+          <div class="modal-mood">${u.mood} mood · <span style="color:#FFB800">★★★★★</span> <span style="color:#6b7280">(4.8/5)</span></div>
           <h3>${u.name}</h3>
+          <div class="modal-tagline">${u.tagline}</div>
           <div class="modal-prices">
             <span class="strike">$${u.original.toFixed(2)}</span>
             <span class="now">$${u.price.toFixed(2)}</span>
@@ -329,7 +335,10 @@
             ${u.bullets.map(b => '<li>' + b + '</li>').join('')}
           </ul>
           <div class="timer-bar">⏱ Discount expires in <span id="modal-timer">14:59</span></div>
-          <a class="add-btn" href="${CONFIG.checkoutUrl}?upsell=1">Add to order with discount →</a>
+          <button class="add-btn" id="modal-add-btn" type="button">
+            <span class="add-btn-default">+ Add ${u.name} to order &nbsp;·&nbsp; one click</span>
+            <span class="add-btn-success">✓ Added to your order</span>
+          </button>
           <a class="decline-btn" href="${CONFIG.checkoutUrl}">No thanks, continue to check-out</a>
         </div>
       </div>
@@ -348,6 +357,25 @@
     m.addEventListener('click', e => { if (e.target === m) close(); });
     document.addEventListener('keydown', function esc(e) {
       if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
+    });
+
+    // ─── ONE-CLICK ADD ───
+    // Single-click adds the upsell to the order without navigating away.
+    // (When you wire up Shopify, swap the simulated state update for a real
+    // POST to /cart/add.js.)
+    const addBtn = m.querySelector('#modal-add-btn');
+    addBtn.addEventListener('click', () => {
+      if (addBtn.classList.contains('added')) return;
+      addBtn.classList.add('adding');
+      // Simulated add — replace with fetch('/cart/add.js', {...}) when live
+      setTimeout(() => {
+        addBtn.classList.remove('adding');
+        addBtn.classList.add('added');
+        // Track in state so a future "your order" view can read it
+        window.__em.upsellAdded = u.name;
+        // Auto-close after a beat so they see the confirmation
+        setTimeout(close, 1600);
+      }, 350);
     });
   }
 

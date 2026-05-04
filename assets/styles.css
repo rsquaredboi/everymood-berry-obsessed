@@ -1019,9 +1019,39 @@ footer { background: white; padding: 28px 20px; border-top: 1px solid #f3f4f6; }
   height: 160px; background: linear-gradient(135deg, #FFE3DC 0%, #FFE3DC 100%);
   border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 56px;
 }
+/* Real product photo (replaces emoji placeholder) */
+.modal-product-photo {
+  height: 220px;
+  background: linear-gradient(135deg, #FFF7EE 0%, #FFE9F1 50%, #FFE3DC 100%);
+  position: relative;
+  overflow: hidden;
+}
+.modal-product-photo::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 65%, rgba(232,74,95,0.18) 0%, transparent 55%);
+}
+.modal-product-photo img {
+  max-height: 92%; max-width: 70%;
+  object-fit: contain;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 12px 22px rgba(232, 74, 95, 0.28));
+}
+.modal-mood {
+  font-size: 11px;
+  color: var(--em-coral);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+.modal-tagline {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 2px 0 4px;
+}
 .modal-card .body { padding: 18px 22px 22px; text-align: center; }
 .modal-card .body > .modal-tag { margin-bottom: 12px; }
-.modal-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; margin: 12px 0 6px; }
+.modal-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; margin: 8px 0 4px; font-weight: 700; }
 .modal-prices { margin: 10px 0 14px; }
 .modal-prices .strike { color: #9ca3af; text-decoration: line-through; }
 .modal-prices .now { font-weight: 800; color: var(--em-ink); margin: 0 6px; }
@@ -1030,11 +1060,30 @@ footer { background: white; padding: 28px 20px; border-top: 1px solid #f3f4f6; }
 .modal-card .timer-bar { background: #FFF7E6; color: #92400E; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 8px; margin-bottom: 14px; }
 .modal-card .add-btn {
   display: block; width: 100%; background: var(--em-ink); color: white;
-  border: 0; padding: 14px; border-radius: 10px;
+  border: 0; padding: 16px; border-radius: 10px;
   font-weight: 800; font-size: 14px;
   text-decoration: none; text-align: center;
   box-shadow: 0 8px 24px -8px rgba(15, 10, 30, 0.4);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  position: relative; overflow: hidden;
+  font-family: inherit;
 }
+.modal-card .add-btn:hover { transform: translateY(-1px); }
+.modal-card .add-btn .add-btn-success { display: none; }
+.modal-card .add-btn.adding { background: #4b5563; pointer-events: none; }
+.modal-card .add-btn.adding .add-btn-default::after {
+  content: ' …';
+  opacity: 0.7;
+}
+.modal-card .add-btn.added {
+  background: #16A34A;
+  pointer-events: none;
+  cursor: default;
+  box-shadow: 0 8px 24px -8px rgba(22, 163, 74, 0.5);
+}
+.modal-card .add-btn.added .add-btn-default { display: none; }
+.modal-card .add-btn.added .add-btn-success { display: inline; }
 .modal-card .decline-btn {
   display: block; padding: 10px; color: #6b7280; font-size: 13px;
   text-align: center; text-decoration: underline; margin-top: 6px;
