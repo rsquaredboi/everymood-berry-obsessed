@@ -398,7 +398,28 @@
     try { initThumbs(); } catch (e) { console.warn('th', e); }
     try { initCTAs(); } catch (e) { console.warn('cta', e); }
     try { recalc(); } catch (e) { console.warn('rc', e); }
+    try { initLadderReveal(); } catch (e) { console.warn('lad', e); }
     console.log('[everymood] interactivity loaded');
+  }
+
+  // ── Ladder bar reveal: trigger CSS bar fill when ladder enters viewport ──
+  function initLadderReveal() {
+    var rows = Array.prototype.slice.call(document.querySelectorAll('.ladder-row'));
+    if (!rows.length) return;
+    if (!('IntersectionObserver' in window)) {
+      rows.forEach(function (r) { r.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var idx = rows.indexOf(e.target);
+          setTimeout(function () { e.target.classList.add('is-visible'); }, idx * 120);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+    rows.forEach(function (r) { io.observe(r); });
   }
 
   if (document.readyState === 'loading') {

@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=5">
-<script defer src="assets/everymood.js?v=6"></script>
+<link rel="stylesheet" href="assets/styles.css?v=7">
+<script defer src="assets/everymood.js?v=7"></script>
 </head>
 <body>
 
@@ -364,12 +364,142 @@
   </main>
 </section>
 
-<!-- MOOD SWATCHES — brand thesis: "every mood = every scent" -->
+<!-- FRAGRANCE VALUE LADDER — animated CSS replacement of static infographic -->
 <section class="mood-platform">
   <main>
     <div class="section-eyebrow">WHERE EVERYMOOD SITS</div>
-    <img src="images/C11-pricing-ladder.jpg" alt="The fragrance value ladder: EveryMood vs designer / niche / mist" class="mood-swatches-img">
+    <h2 class="display-font ladder-headline">The fragrance value<br><span class="ladder-headline-em">ladder, end to end.</span></h2>
+    <div class="ladder">
+      <ol class="ladder-list">
+        <li class="ladder-row" style="--bar-pct:100%;--tier:#a89669;">
+          <div class="ladder-row-meta">
+            <strong>Designer luxury</strong>
+            <span class="ladder-permil">$2.96<i>/mL</i></span>
+          </div>
+          <div class="ladder-bar-wrap"><div class="ladder-bar" data-fill="100"></div></div>
+          <div class="ladder-price">$148<i>/50mL</i></div>
+        </li>
+        <li class="ladder-row" style="--bar-pct:66%;--tier:#bda973;">
+          <div class="ladder-row-meta">
+            <strong>Niche / indie</strong>
+            <span class="ladder-permil">$1.96<i>/mL</i></span>
+          </div>
+          <div class="ladder-bar-wrap"><div class="ladder-bar" data-fill="66"></div></div>
+          <div class="ladder-price">$98<i>/50mL</i></div>
+        </li>
+        <li class="ladder-row" style="--bar-pct:20%;--tier:#c9b8b1;">
+          <div class="ladder-row-meta">
+            <strong>Skincare-fragrance hybrid</strong>
+            <span class="ladder-permil">$0.58<i>/mL</i></span>
+          </div>
+          <div class="ladder-bar-wrap"><div class="ladder-bar" data-fill="20"></div></div>
+          <div class="ladder-price">$58<i>/100mL</i></div>
+        </li>
+        <li class="ladder-row" style="--bar-pct:8%;--tier:#d6d2cf;">
+          <div class="ladder-row-meta">
+            <strong>Body mist (BBW tier)</strong>
+            <span class="ladder-permil">$0.12<i>/mL</i></span>
+          </div>
+          <div class="ladder-bar-wrap"><div class="ladder-bar" data-fill="8"></div></div>
+          <div class="ladder-price">$28<i>/240mL</i></div>
+        </li>
+        <li class="ladder-row everymood-row" style="--bar-pct:14%;">
+          <div class="ladder-row-meta">
+            <strong>EveryMood</strong>
+            <span class="ladder-permil">$0.22<i>/mL</i></span>
+            <span class="ladder-flag">▸ you are here</span>
+          </div>
+          <div class="ladder-bar-wrap"><div class="ladder-bar" data-fill="14"></div><div class="ladder-bar-shimmer"></div></div>
+          <div class="ladder-price">$22<i>/100mL</i></div>
+        </li>
+      </ol>
+      <div class="ladder-savings">
+        <div class="savings-stat"><span class="savings-num">$126</span><span class="savings-lbl">saved vs designer</span></div>
+        <div class="savings-stat"><span class="savings-num">13×</span><span class="savings-lbl">cheaper per mL than luxury</span></div>
+        <div class="savings-stat"><span class="savings-num">100mL</span><span class="savings-lbl">2× the volume of designer</span></div>
+      </div>
+    </div>
     <p class="mood-platform-foot">Designer-grade scent. <strong>1/5th the markup.</strong> Same molecules, real ingredients, no $130 bottle tax.</p>
+  </main>
+</section>
+
+<!-- THE SCIENCE — why traditional perfume destroys hair/skin -->
+<section class="science-section">
+  <main>
+    <div class="section-eyebrow">THE SCIENCE</div>
+    <h2 class="display-font science-h">Why your perfume<br><span class="science-h-em">is wrecking your hair.</span></h2>
+    <p class="science-sub">Most designer fragrances are 70-90% denatured alcohol. Here's what that actually does to your scalp and strands.</p>
+
+    <div class="science-grid">
+      <article class="science-card science-card-perfume">
+        <header class="sci-card-head"><span class="sci-card-tag tag-bad">⚠ TRADITIONAL PERFUME</span></header>
+        <div class="donut" style="--pct:78;--ring:#1B0F1A;">
+          <div class="donut-inner"><span class="donut-pct">78<i>%</i></span><span class="donut-lbl">denatured<br>alcohol</span></div>
+        </div>
+        <ul class="ingredient-list ingredient-bad">
+          <li><span class="ing-dot" style="background:#1B0F1A"></span><span class="ing-name">SD Alcohol 40-B</span><span class="ing-amt">~78%</span></li>
+          <li><span class="ing-dot" style="background:#535152"></span><span class="ing-name">Synthetic fragrance compounds</span><span class="ing-amt">~15%</span></li>
+          <li><span class="ing-dot" style="background:#a8a3a3"></span><span class="ing-name">Water</span><span class="ing-amt">~5%</span></li>
+          <li><span class="ing-dot" style="background:#c46666"></span><span class="ing-name">Phthalates, fixatives</span><span class="ing-amt">~2%</span></li>
+        </ul>
+      </article>
+
+      <article class="science-card science-card-em">
+        <header class="sci-card-head"><span class="sci-card-tag tag-good">✓ EVERYMOOD BERRY OBSESSED</span></header>
+        <div class="donut donut-em" style="--pct:0;--ring:var(--em-coral);">
+          <div class="donut-inner"><span class="donut-pct">0<i>%</i></span><span class="donut-lbl">denatured<br>alcohol</span></div>
+        </div>
+        <ul class="ingredient-list ingredient-good">
+          <li><span class="ing-dot" style="background:#FF6B9E"></span><span class="ing-name">Hyaluronic Acid</span><span class="ing-amt">cuticle seal</span></li>
+          <li><span class="ing-dot" style="background:#7CC0A8"></span><span class="ing-name">Aloe vera juice</span><span class="ing-amt">anti-inflammatory</span></li>
+          <li><span class="ing-dot" style="background:#F5C26B"></span><span class="ing-name">Vitamin E (Tocopherol)</span><span class="ing-amt">antioxidant</span></li>
+          <li><span class="ing-dot" style="background:#E84A5F"></span><span class="ing-name">Strawberry-cream fragrance</span><span class="ing-amt">skin-safe</span></li>
+          <li><span class="ing-dot" style="background:#C9DEF4"></span><span class="ing-name">Purified water base</span><span class="ing-amt">pH 5.5</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="damage-flow">
+      <h3 class="damage-flow-h">How 78% alcohol damages your hair, step-by-step</h3>
+      <ol class="damage-steps">
+        <li class="damage-step">
+          <div class="dstep-num">01</div>
+          <div class="dstep-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M14 8c0 6 4 10 10 10s10-4 10-10M14 18c0 6 4 10 10 10s10-4 10-10M14 28c0 6 4 10 10 10s10-4 10-10" stroke="#E84A5F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <strong>Strips lipid layer</strong>
+          <p>Alcohol dissolves the F-layer that coats every hair strand, the body's natural waterproofing.</p>
+        </li>
+        <li class="damage-step">
+          <div class="dstep-num">02</div>
+          <div class="dstep-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M8 32l8-8 8 8 8-12 8 12" stroke="#E84A5F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 38h36" stroke="#E84A5F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <strong>Lifts the cuticle</strong>
+          <p>Cuticle scales pry open. The cortex (where pigment lives) is now exposed to friction and UV.</p>
+        </li>
+        <li class="damage-step">
+          <div class="dstep-num">03</div>
+          <div class="dstep-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#E84A5F" stroke-width="2.5"/><path d="M16 18c2 4 6 6 8 6s6-2 8-6" stroke="#E84A5F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <strong>Color leaches out</strong>
+          <p>Open cuticle = dye molecules wash out in 1-2 shampoos. Salon color fades 3× faster.</p>
+        </li>
+        <li class="damage-step">
+          <div class="dstep-num">04</div>
+          <div class="dstep-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 6v14M24 28v14M14 22h6M28 22h6" stroke="#E84A5F" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <strong>Strand snaps mid-shaft</strong>
+          <p>Dehydrated keratin loses tensile strength. Brushing or styling triggers breakage at the weakest point.</p>
+        </li>
+      </ol>
+    </div>
+
+    <p class="science-cite">
+      Sources: <em>Journal of Cosmetic Science</em> 70:3 (2019), American Academy of Dermatology, International Journal of Trichology 8:2 (2016). Reviewed by Nora Khalif, MS Cosmetic Chemistry.
+    </p>
   </main>
 </section>
 

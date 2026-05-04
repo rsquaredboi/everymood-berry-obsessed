@@ -77,15 +77,18 @@ PROMPTS = {
     # Hair before/after — fills the C5 hair-safe demo placeholder slots
     # CRITICAL: No bottle, no product, no container in shot. Pills label cells.
     "hair-before": {
-        "ref": False,
-        "prompt": "Editorial beauty close-up of a young woman with FRIZZY, "
-                  "DRY, dull strawberry-blonde hair, split ends, slightly "
-                  "tangled, wind-swept messy texture. Head tilted down slightly. "
-                  "Soft cream-pink background, flat studio lighting. Beauty "
-                  "commercial 'before treatment' shot — only the model and her "
-                  "damaged hair. ABSOLUTELY NO bottle, NO product, NO container, "
-                  "NO mist, NO logo, NO jar, NO packaging, NO label of any kind "
-                  "anywhere in the frame. Pure portrait. Square 1:1.",
+        "ref": "AI-hair-after",  # use the AFTER model image as character reference
+        "prompt": "Editorial beauty close-up of the SAME young Asian woman from "
+                  "the reference image (same face, same skin tone, same age, "
+                  "same features), but now with TERRIBLE damaged hair: extremely "
+                  "frizzy, dry, brittle, severe split ends, dull lifeless "
+                  "strands, badly faded color, wind-blown messy bedhead texture, "
+                  "stringy and lank. Head turned slightly toward camera. Same "
+                  "soft pink seamless background and lighting setup as the "
+                  "reference, so this reads as a true 'before' twin shot. "
+                  "Wearing a plain cream sleeveless top. ABSOLUTELY NO bottle, "
+                  "NO product, NO container, NO mist, NO logo, NO packaging "
+                  "anywhere in frame. Pure portrait. Square 1:1.",
     },
     "hair-after": {
         "ref": True,
@@ -273,22 +276,28 @@ PROMPTS = {
 }
 
 
+def encode_path(p: Path) -> str:
+    return base64.b64encode(p.read_bytes()).decode()
+
+
 def encode_ref() -> str:
     """Encode the real Berry Obsessed bottle photo as base64 for reference."""
-    ref_path = SRC_IMG / "berry-hero.png"
-    return base64.b64encode(ref_path.read_bytes()).decode()
+    return encode_path(SRC_IMG / "berry-hero.png")
 
 
-def call_gemini(prompt: str, use_ref: bool = False) -> bytes:
-    """Call Gemini 2.5 Flash Image. Returns raw image bytes."""
+def call_gemini(prompt: str, use_ref=False) -> bytes:
+    """Call Gemini. use_ref: True=bottle, False=none, str=AI-{name}.png from out-ai or images."""
     parts = [{"text": BRAND + " " + prompt}]
-    if use_ref:
-        parts.append({
-            "inline_data": {
-                "mime_type": "image/png",
-                "data": encode_ref(),
-            }
-        })
+    if use_ref is True:
+        parts.append({"inline_data": {"mime_type": "image/png", "data": encode_ref()}})
+    elif isinstance(use_ref, str):
+        # Look up the named ref in out-ai/ first, then images/
+        candidate = OUT / f"{use_ref}.png"
+        if not candidate.exists():
+            candidate = SRC_IMG / f"{use_ref}.png"
+        if not candidate.exists():
+            raise FileNotFoundError(f"Ref image not found: {use_ref}")
+        parts.append({"inline_data": {"mime_type": "image/png", "data": encode_path(candidate)}})
     body = json.dumps({
         "contents": [{"parts": parts}],
         "generationConfig": {
