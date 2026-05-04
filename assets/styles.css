@@ -143,6 +143,144 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
   transition: opacity 0.2s ease;
 }
 .product-photo.swapping { opacity: 0.4; }
+
+/* ─── HERO LIVE OVERLAY ───
+ * Real HTML/CSS on top of the product photo. Text is selectable, indexable,
+ * accessible. Fades in/out on photo swap. */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  transition: opacity 0.18s ease;
+}
+.hero-overlay.overlay-fade { opacity: 0; }
+.hero-overlay > * { position: absolute; pointer-events: auto; user-select: text; }
+.corner-tl { top: 16px; left: 16px; }
+.corner-tr { top: 16px; right: 16px; }
+.corner-bl { bottom: 16px; left: 16px; }
+.corner-br { bottom: 16px; right: 16px; }
+
+/* Badge pills (top-left identity tag) */
+.badge-pill {
+  display: inline-block;
+  background: rgba(255, 247, 238, 0.95);
+  color: var(--em-coral-dark);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px -6px rgba(0,0,0,0.18);
+}
+.badge-pill.badge-coral { background: var(--em-coral); color: white; }
+.badge-pill.badge-dark  { background: var(--em-ink); color: var(--em-cream); }
+.badge-pill.badge-lime  { background: var(--em-ink); color: var(--em-lime, #BFFF00); }
+
+/* Stat block (top-right number) */
+.hero-stat {
+  background: rgba(255, 247, 238, 0.92);
+  backdrop-filter: blur(6px);
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-align: right;
+  box-shadow: 0 6px 20px -8px rgba(0,0,0,0.18);
+  min-width: 84px;
+}
+.hero-stat .stat-num {
+  display: block;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--em-coral-dark);
+  letter-spacing: -0.02em;
+}
+.hero-stat .stat-lbl {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--em-ink);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Caption block (bottom-left product/scent text) */
+.hero-caption {
+  background: linear-gradient(180deg, rgba(255,247,238,0) 0%, rgba(15,10,26,0.78) 100%);
+  padding: 36px 18px 14px;
+  border-radius: 12px;
+  max-width: 75%;
+}
+.hero-caption-title {
+  font-weight: 700;
+  font-size: 22px;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.hero-caption-title .strike {
+  text-decoration: line-through;
+  opacity: 0.65;
+  font-weight: 500;
+  margin-right: 4px;
+}
+.hero-caption-sub {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.88);
+  margin-top: 4px;
+}
+.hero-caption-quote {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 18px;
+  color: white;
+  line-height: 1.3;
+}
+.hero-caption-attr {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--em-pink);
+  margin-top: 6px;
+}
+
+/* Chip rows (corner chips for scent layers / ingredients) */
+.hero-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: 70%;
+}
+.hero-chips.chips-stack {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.chip {
+  display: inline-block;
+  background: rgba(255, 247, 238, 0.92);
+  backdrop-filter: blur(6px);
+  color: var(--em-ink);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 3px 10px -4px rgba(0,0,0,0.15);
+}
+.chip.chip-coral { background: var(--em-coral); color: white; }
+
+/* Mobile: tighten spacing */
+@media (max-width: 600px) {
+  .corner-tl, .corner-tr, .corner-bl, .corner-br { margin: 4px; }
+  .hero-stat .stat-num { font-size: 22px; }
+  .hero-caption-title { font-size: 18px; }
+  .hero-caption-quote { font-size: 15px; }
+}
 .derm-strip {
   display: flex; align-items: center; justify-content: center; gap: 10px;
   margin-top: 14px; padding: 12px;
@@ -631,6 +769,146 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
   max-width: 540px; margin: 0 auto; color: #4b5563; font-size: 15px;
 }
 .mood-platform-foot strong { color: var(--em-coral); font-weight: 800; }
+
+/* Hair-safe before/after — AI photo demo */
+.hair-safe { background: var(--em-cream); padding: 56px 0; }
+.hair-safe-h { text-align: center; font-size: 28px; margin: 8px 0 28px; }
+@media (min-width: 800px) { .hair-safe-h { font-size: 36px; } }
+.hair-safe-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  max-width: 980px; margin: 0 auto;
+}
+@media (max-width: 700px) { .hair-safe-grid { grid-template-columns: 1fr; } }
+.hair-cell {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 12px 36px -16px rgba(232,74,95,0.16);
+}
+.hair-cell img { width: 100%; height: auto; display: block; aspect-ratio: 1/1; object-fit: cover; }
+.hair-pill {
+  position: absolute; bottom: 80px; left: 16px;
+  padding: 8px 18px; border-radius: 999px;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.5px;
+}
+.hair-pill-before { background: var(--em-ink); color: var(--em-cream); }
+.hair-pill-after  { background: var(--em-coral); color: white; }
+.hair-cell-cap {
+  margin: 0; padding: 14px 18px;
+  font-size: 14px; color: #4b5563; font-weight: 600;
+}
+.hair-safe-foot {
+  text-align: center;
+  color: #6b7280; font-size: 14px;
+  max-width: 580px; margin: 24px auto 0;
+}
+
+/* Editorial gallery — magazine-quality berry-mood shots */
+.editorial-band {
+  background: linear-gradient(180deg, #1B0F1A 0%, #2A1525 100%);
+  color: white;
+  padding: 64px 0;
+}
+.editorial-band .section-eyebrow {
+  color: var(--em-pink-soft);
+  text-align: center;
+}
+.editorial-h {
+  text-align: center;
+  font-size: 30px;
+  margin: 8px 0 6px;
+  color: white;
+}
+@media (min-width: 800px) { .editorial-h { font-size: 42px; } }
+.editorial-sub {
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  margin: 0 auto 32px;
+}
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 14px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (max-width: 900px) { .editorial-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .editorial-grid { grid-template-columns: 1fr; } }
+.editorial-card {
+  margin: 0;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--em-ink);
+  box-shadow: 0 12px 36px -12px rgba(0,0,0,0.5);
+  aspect-ratio: 1/1;
+}
+.editorial-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.editorial-card:hover img { transform: scale(1.04); }
+.editorial-card figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 16px 14px;
+  background: linear-gradient(180deg, transparent 0%, rgba(15,10,26,0.88) 80%);
+  color: white;
+}
+.editorial-card .ed-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  margin-bottom: 6px;
+}
+.editorial-card figcaption strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* In Real Life band — UGC-style scenes */
+.irl-band { background: white; padding: 56px 0; }
+.irl-h { text-align: center; font-size: 28px; margin: 8px 0 28px; }
+@media (min-width: 800px) { .irl-h { font-size: 36px; } }
+.irl-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  max-width: 1180px; margin: 0 auto;
+}
+@media (max-width: 800px) { .irl-grid { grid-template-columns: 1fr; } }
+.irl-card {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--em-cream);
+  box-shadow: 0 8px 24px -12px rgba(232,74,95,0.18);
+}
+.irl-card img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+}
+.irl-card figcaption {
+  padding: 14px 18px;
+  font-size: 14px; color: #4b5563; line-height: 1.5;
+}
+.irl-card figcaption strong {
+  display: inline; color: var(--em-coral); font-weight: 800;
+  margin-right: 4px;
+}
 
 /* Compliment band — teaser strip above reviews */
 .compliment-band {

@@ -28,6 +28,10 @@ __pycache__/
 *.pyc
 .venv/
 
+# Image pipeline outputs (regenerable via generate.py / generate_gemini.py)
+image-pipeline/out/
+image-pipeline/out-ai/
+
 # Node (in case anything gets dropped)
 node_modules/
 package-lock.json

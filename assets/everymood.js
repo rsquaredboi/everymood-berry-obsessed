@@ -224,22 +224,84 @@
     });
   }
 
-  // ─── 9. HERO THUMBNAIL STRIP — swap main image on click ───
+  // ─── 9. HERO GALLERY — swap photo + live HTML overlay (selectable text) ───
+  // Overlay content is REAL HTML — selectable, accessible, SEO-indexable.
+  // Each photo carries its own conversion message via data-overlay key.
+  const OVERLAYS = {
+    bottle: `
+      <div class="hero-badge corner-tl"><span class="badge-pill">JUICY &amp; VIBRANT</span></div>
+      <div class="hero-stat corner-tr"><span class="stat-num">+137%</span><span class="stat-lbl">moisture</span></div>
+      <div class="hero-caption corner-bl">
+        <div class="hero-caption-title">Berry Obsessed</div>
+        <div class="hero-caption-sub">Strawberry · Cream · Vanilla</div>
+      </div>`,
+    strawberry: `
+      <div class="hero-badge corner-tl"><span class="badge-pill badge-coral">WILD STRAWBERRY</span></div>
+      <div class="hero-stat corner-tr"><span class="stat-num">12 hr</span><span class="stat-lbl">scent lock</span></div>
+      <div class="hero-caption corner-bl">
+        <div class="hero-caption-title">$130 vibe.</div>
+        <div class="hero-caption-sub">$22 price tag.</div>
+      </div>
+      <div class="hero-chips corner-br">
+        <span class="chip">TOP</span><span class="chip">HEART</span><span class="chip">BASE</span>
+      </div>`,
+    lifestyle: `
+      <div class="hero-badge corner-tl"><span class="badge-pill badge-dark">REAL CUSTOMER</span></div>
+      <div class="hero-stat corner-tr"><span class="stat-num">96%</span><span class="stat-lbl">got compliments</span></div>
+      <div class="hero-caption corner-bl">
+        <div class="hero-caption-quote">&ldquo;Got 4 compliments at brunch.&rdquo;</div>
+        <div class="hero-caption-attr">— JESS T. · VERIFIED BUYER</div>
+      </div>`,
+    ingredients: `
+      <div class="hero-badge corner-tl"><span class="badge-pill">INSIDE EVERY SPRITZ</span></div>
+      <div class="hero-stat corner-tr"><span class="stat-num">0%</span><span class="stat-lbl">denatured alcohol</span></div>
+      <div class="hero-chips corner-bl chips-stack">
+        <span class="chip chip-coral">Hyaluronic Acid</span>
+        <span class="chip chip-coral">Coconut Extract</span>
+        <span class="chip chip-coral">Vitamin E</span>
+      </div>`,
+    closeup: `
+      <div class="hero-badge corner-tl"><span class="badge-pill">100mL · 3.4 fl oz</span></div>
+      <div class="hero-stat corner-tr"><span class="stat-num">~600</span><span class="stat-lbl">spritzes</span></div>
+      <div class="hero-caption corner-bl">
+        <div class="hero-caption-title">Pocket-sized.</div>
+        <div class="hero-caption-sub">Dermatologist tested · Vegan · Cruelty-free</div>
+      </div>`,
+    dramatic: `
+      <div class="hero-badge corner-tl"><span class="badge-pill badge-lime">55% OFF · LIMITED</span></div>
+      <div class="hero-caption corner-bl">
+        <div class="hero-caption-title"><span class="strike">$34</span> &nbsp;$22</div>
+        <div class="hero-caption-sub">+ free Mystery Mini on the 3-pack</div>
+      </div>`,
+  };
+
   function initThumbs() {
     const thumbs = $$('.hero-thumb');
     const mainImg = $('#hero-main-img');
-    thumbs.forEach(t => t.addEventListener('click', e => {
-      e.preventDefault();
+    const overlay = $('#hero-overlay');
+    function swap(t) {
       thumbs.forEach(x => x.classList.toggle('active', x === t));
       const newSrc = t.dataset.src;
+      const stage = t.dataset.overlay;
       if (mainImg && newSrc && mainImg.getAttribute('src') !== newSrc) {
         mainImg.classList.add('swapping');
-        // tiny delay so the fade is visible
         setTimeout(() => {
           mainImg.setAttribute('src', newSrc);
           mainImg.onload = () => mainImg.classList.remove('swapping');
         }, 120);
       }
+      if (overlay && stage && OVERLAYS[stage]) {
+        overlay.classList.add('overlay-fade');
+        setTimeout(() => {
+          overlay.dataset.overlay = stage;
+          overlay.innerHTML = OVERLAYS[stage];
+          overlay.classList.remove('overlay-fade');
+        }, 160);
+      }
+    }
+    thumbs.forEach(t => t.addEventListener('click', e => {
+      e.preventDefault();
+      swap(t);
     }));
   }
 
