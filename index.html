@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=7">
+<link rel="stylesheet" href="assets/styles.css?v=8">
 <script defer src="assets/everymood.js?v=7"></script>
 </head>
 <body>
@@ -25,7 +25,9 @@
 <!-- Sticky header -->
 <header class="site-header">
   <a href="." class="logo" aria-label="EveryMood">
-    <img src="images/em-logo.svg" alt="EveryMood" style="height:24px;width:auto;display:block;">
+    <a class="em-wordmark em-wordmark-nav" href="." aria-label="EveryMood">
+      <span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face" aria-hidden="true"><span class="em-eye"></span><span class="em-eye"></span></span>d</span>
+    </a>
   </a>
   <button class="header-cta" data-cta="header">Claim Offer →</button>
 </header>
@@ -559,6 +561,37 @@
   </main>
 </section>
 
+<!-- BRAND MARQUEE — infinite-scroll wordmark band -->
+<div class="em-marquee" aria-hidden="true">
+  <div class="em-marquee-track">
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">a mood for every mood</span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">berry obsessed</span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">smells like $130</span>
+    <span class="em-marquee-star">✦</span>
+    <!-- duplicate set for seamless loop -->
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">a mood for every mood</span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">berry obsessed</span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item"><span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face"><span class="em-eye"></span><span class="em-eye"></span></span>d</span></span>
+    <span class="em-marquee-star">✦</span>
+    <span class="em-marquee-item">smells like $130</span>
+    <span class="em-marquee-star">✦</span>
+  </div>
+</div>
+
 <!-- IN REAL LIFE band — UGC-style scenes -->
 <section class="irl-band">
   <main>
@@ -692,9 +725,24 @@
   </div>
 </section>
 
+<!-- BRAND OUTRO — full-width animated wordmark -->
+<section class="brand-outro" aria-label="EveryMood">
+  <div class="brand-outro-bg" aria-hidden="true"></div>
+  <div class="brand-outro-inner">
+    <span class="brand-outro-eyebrow">A MOOD FOR EVERY</span>
+    <a class="em-wordmark em-wordmark-hero" href="https://everymood.com" target="_blank" rel="noopener" aria-label="EveryMood">
+      <span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face" aria-hidden="true"><span class="em-eye"></span><span class="em-eye"></span></span>d</span>
+    </a>
+    <span class="brand-outro-tag">Berry Obsessed · Vanilla Soft Serve · Smell The Rose · Cozy Cashmere · Beach Babe</span>
+  </div>
+</section>
+
 <!-- Footer -->
 <footer>
   <div class="footer-inner">
+    <a class="em-wordmark em-wordmark-sm" href="." aria-label="EveryMood">
+      <span class="em-w">every</span><span class="em-w em-w-mood">m<span class="em-face" aria-hidden="true"><span class="em-eye"></span><span class="em-eye"></span></span>d</span>
+    </a>
     <span>© 2026 EveryMood. All rights reserved.</span>
     <div class="footer-links">
       <a href="https://everymood.com/policies/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
