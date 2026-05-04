@@ -29,19 +29,18 @@ BOTTLE_PNG = SRC_IMG / "berry-hero.png"
 # Coordinates are % of scene dimensions. Anchor is bottom-center of bottle.
 # Tuned to match the "empty slot" each AI prompt asks for.
 SLOTS = {
-    # IRL band
-    "AI-compliment-brunch":     {"x": 0.50, "y": 0.78, "h": 0.42, "rot":  0, "shadow": True},
-    "AI-hand-spritz":           {"x": 0.72, "y": 0.65, "h": 0.55, "rot": -8, "shadow": False},
-    "AI-bathroom-shelf":        {"x": 0.32, "y": 0.62, "h": 0.50, "rot":  0, "shadow": True},
-    # Editorial gallery
-    "AI-berry-vogue-portrait":  {"x": 0.30, "y": 0.70, "h": 0.55, "rot": -5, "shadow": False},
-    "AI-berry-juice-splash":    {"x": 0.50, "y": 0.72, "h": 0.62, "rot":  0, "shadow": False},
-    "AI-berry-bedside-ritual":  {"x": 0.30, "y": 0.55, "h": 0.50, "rot": -8, "shadow": True},
-    "AI-berry-vanity-getting-ready": {"x": 0.50, "y": 0.68, "h": 0.42, "rot": 0, "shadow": True},
-    "AI-berry-poolside-club":   {"x": 0.50, "y": 0.55, "h": 0.40, "rot": -3, "shadow": True},
-    "AI-berry-hair-toss-mist":  {"x": 0.70, "y": 0.78, "h": 0.45, "rot":  10, "shadow": False},
-    "AI-berry-farmers-market":  {"x": 0.62, "y": 0.55, "h": 0.45, "rot": -8, "shadow": True},
-    "AI-berry-pink-on-pink":    {"x": 0.32, "y": 0.65, "h": 0.55, "rot":  0, "shadow": False},
+    # IRL band — surface-placed scenes get the real bottle pasted in.
+    # The "model holding bottle" scenes are NOT here — they're regen'd with
+    # ref=True so Gemini renders the bottle naturally in-hand. Those scenes
+    # are copied straight from out-ai/ to images/ unchanged.
+    "AI-compliment-brunch":          {"x": 0.50, "y": 0.86, "h": 0.32, "rot":  0, "shadow": True},
+    "AI-bathroom-shelf":             {"x": 0.30, "y": 0.72, "h": 0.34, "rot":  0, "shadow": True},
+    # Editorial gallery — surface placements only
+    "AI-berry-juice-splash":         {"x": 0.50, "y": 0.72, "h": 0.55, "rot":  0, "shadow": False},
+    "AI-berry-bedside-ritual":       {"x": 0.28, "y": 0.62, "h": 0.36, "rot": -3, "shadow": True},
+    "AI-berry-vanity-getting-ready": {"x": 0.50, "y": 0.70, "h": 0.36, "rot":  0, "shadow": True},
+    "AI-berry-poolside-club":        {"x": 0.50, "y": 0.58, "h": 0.32, "rot": -3, "shadow": True},
+    "AI-berry-farmers-market":       {"x": 0.62, "y": 0.58, "h": 0.40, "rot": -5, "shadow": True},
 }
 
 
@@ -61,20 +60,21 @@ def composite(scene_path: Path, slot: dict, out_path: Path):
         bottle = bottle.rotate(slot["rot"], resample=Image.BICUBIC, expand=True)
         target_w, target_h = bottle.size
 
-    # Build a soft shadow if requested
+    # Build a soft contact shadow under the bottle base if requested
     if slot.get("shadow"):
         shadow_layer = Image.new("RGBA", scene.size, (0, 0, 0, 0))
-        # Get bottle alpha as shadow source
-        sh_bottle = bottle.split()[-1]
-        shadow_blob = Image.new("RGBA", bottle.size, (0, 0, 0, 0))
-        shadow_blob.paste((10, 5, 15, 130), mask=sh_bottle)
-        shadow_blob = shadow_blob.filter(ImageFilter.GaussianBlur(radius=18))
-        # Place shadow slightly below + offset
+        # Elliptical contact shadow at base width, ~15% of bottle height
+        sw_shadow = int(target_w * 0.85)
+        sh_shadow = max(8, int(target_h * 0.10))
+        ellipse = Image.new("RGBA", (sw_shadow, sh_shadow), (0, 0, 0, 0))
+        from PIL import ImageDraw
+        ImageDraw.Draw(ellipse).ellipse((0, 0, sw_shadow, sh_shadow), fill=(10, 5, 15, 150))
+        ellipse = ellipse.filter(ImageFilter.GaussianBlur(radius=10))
         anchor_x = int(sw * slot["x"])
         anchor_y = int(sh * slot["y"])
-        sx = anchor_x - target_w // 2 + 8
-        sy = anchor_y - target_h + 24
-        shadow_layer.paste(shadow_blob, (sx, sy), shadow_blob)
+        sx = anchor_x - sw_shadow // 2 + 4
+        sy = anchor_y - sh_shadow // 2 + 2
+        shadow_layer.paste(ellipse, (sx, sy), ellipse)
         scene = Image.alpha_composite(scene, shadow_layer)
 
     # Paste bottle (anchor = bottom-center)

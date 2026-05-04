@@ -125,17 +125,18 @@ PROMPTS = {
                   "light. Phlur / Sol de Janeiro editorial style. Square 1:1. "
                   "NO bottle, NO product, NO container, NO logo anywhere.",
     },
-    # Hand spritzing moment
+    # Hand spritzing moment — AI generates a pink bottle being held;
+    # real bottle composited on top.
     "hand-spritz": {
-        "ref": False,
-        "prompt": "Editorial beauty shot — close-up of a young woman's wrist "
-                  "and hand mid-spritz, fine pink mist droplets visible in "
-                  "soft backlight, soft pink seamless background. Her other "
-                  "hand is visible to the right with palm open and fingers "
-                  "loosely curled, ready to hold something but EMPTY. Magazine "
-                  "fragrance commercial style, shallow depth of field. "
-                  "Square 1:1. NO bottle, NO product, NO container in any "
-                  "hand. Just the gesture and the mist.",
+        "ref": True,
+        "prompt": "Editorial beauty shot — close-up of a young woman's hand "
+                  "in upper-right of frame visibly gripping a small pink "
+                  "wellness mist bottle (cylindrical, ~10cm tall, white spray "
+                  "cap on top), spraying fine pink mist droplets downward "
+                  "toward her other open palm in lower-left of frame. Bottle "
+                  "MUST be clearly visible and held firmly. Soft pink seamless "
+                  "backdrop, magazine fragrance commercial style, shallow "
+                  "depth of field. Square 1:1.",
     },
     # Bathroom shelf flatlay
     "bathroom-shelf": {
@@ -178,16 +179,16 @@ PROMPTS = {
     # ──────────────────────────────────────────────────────
     # Editorial scenes — no bottle in shot. Real bottle composited via Pillow.
     "berry-vogue-portrait": {
-        "ref": False,
+        "ref": True,
         "prompt": "High-fashion editorial portrait — young woman early 20s, "
                   "bold hot-pink eyeshadow, glossy lips, dewy luminous skin, "
-                  "diamond-stud earrings, head tilted toward the LEFT side "
-                  "of frame with one hand raised near her left cheek but "
-                  "fingers curled loosely as if holding something. Saturated "
+                  "diamond-stud earrings, head tilted toward the right. Her "
+                  "left hand is raised near her left cheek visibly gripping a "
+                  "small pink wellness mist bottle (cylindrical, ~10cm tall, "
+                  "white spray cap on top). Bottle must be clearly visible "
+                  "and held firmly between thumb and fingers. Saturated "
                   "magenta backdrop. Single hard rim light from upper left. "
-                  "Vogue Beauty cover energy. Square 1:1. NO bottle, NO "
-                  "product, NO container in her hand or anywhere visible. "
-                  "Empty hand gesture only.",
+                  "Vogue Beauty cover energy. Square 1:1.",
     },
     "berry-juice-splash": {
         "ref": False,
@@ -234,15 +235,16 @@ PROMPTS = {
                   "NO bottle, NO mist, NO product, NO container.",
     },
     "berry-hair-toss-mist": {
-        "ref": False,
+        "ref": True,
         "prompt": "Cinematic frozen-motion beauty shot — young woman "
                   "mid-hair-toss with long dark glossy hair flying in an "
-                  "arc, fine pink mist droplets visible suspended in the "
-                  "air, her other hand raised at chest level with fingers "
-                  "loosely curled. Backlit by hot-pink studio light, deep "
-                  "magenta backdrop. Action beauty commercial energy. "
-                  "Square 1:1. NO bottle, NO product, NO container in either "
-                  "hand. Just the hair, the mist, the gesture.",
+                  "arc, fine pink mist droplets visible suspended in the air. "
+                  "Her right hand is raised at chest level visibly gripping "
+                  "a small pink wellness mist bottle (cylindrical, ~10cm "
+                  "tall, white spray cap on top), spray nozzle aimed up at "
+                  "her hair. Bottle must be clearly visible. Backlit by "
+                  "hot-pink studio light, deep magenta backdrop. Action "
+                  "beauty commercial energy. Square 1:1.",
     },
     "berry-farmers-market": {
         "ref": False,
@@ -255,15 +257,16 @@ PROMPTS = {
                   "Square 1:1. NO bottle, NO mist, NO product visible.",
     },
     "berry-pink-on-pink": {
-        "ref": False,
+        "ref": True,
         "prompt": "Hyper-saturated fashion editorial — young woman in a "
                   "bright fuchsia silk slip dress against a fuchsia "
-                  "seamless backdrop, head tilted left, one hand raised "
-                  "near her cheek with fingers loosely curled as if holding "
-                  "something. Pink shimmer eyeshadow, soft smile. Single key "
-                  "light through pink gel filter. Bold pink-on-pink "
-                  "monochromatic energy. Square 1:1. NO bottle, NO product, "
-                  "NO container in her hand. Empty gesture only.",
+                  "seamless backdrop, head tilted right. Her left hand is "
+                  "raised in front of her chest visibly gripping a small "
+                  "pink wellness mist bottle (cylindrical, ~10cm tall, white "
+                  "spray cap on top). Bottle clearly visible, held firmly. "
+                  "Pink shimmer eyeshadow, soft smile. Single key light "
+                  "through pink gel filter. Bold pink-on-pink monochromatic "
+                  "energy. Square 1:1.",
     },
 }
 
