@@ -75,21 +75,27 @@ BRAND = (
 # Some prompts use the bottle reference, others don't
 PROMPTS = {
     # Hair before/after — fills the C5 hair-safe demo placeholder slots
+    # CRITICAL: No bottle, no product, no container in shot. Pills label cells.
     "hair-before": {
         "ref": False,
         "prompt": "Editorial beauty close-up of a young woman's hair showing "
                   "frizziness, dryness, split ends, dull texture, slightly "
                   "tangled. Soft cream background, flat studio lighting. "
                   "Used in beauty commercial as 'before treatment' shot. "
-                  "Hair only, face partially visible from below. Square 1:1.",
+                  "HAIR ONLY — absolutely no bottle, no product, no container, "
+                  "no mist, no spray, no logo, no packaging, no jar visible. "
+                  "Just the model and her hair. Square 1:1.",
     },
     "hair-after": {
         "ref": False,
         "prompt": "Editorial beauty close-up of a young woman's flowing dark "
                   "hair, glossy and smooth, individual strands defined, "
-                  "treatment-finished texture. Soft pink seamless background, "
-                  "studio softbox lighting. Magazine commercial 'after' look. "
-                  "Hair only, face partially visible from below. Square 1:1.",
+                  "treatment-finished texture, single subtle pink streak detail. "
+                  "Soft pink seamless background, studio softbox lighting. "
+                  "Magazine commercial 'after' look. HAIR ONLY — absolutely no "
+                  "bottle, no product, no container, no mist, no spray, no logo, "
+                  "no packaging visible anywhere in frame. Just the model and "
+                  "her hair. Square 1:1.",
     },
     # Skin glow before/after
     "skin-before": {
@@ -107,35 +113,41 @@ PROMPTS = {
                   "Square 1:1.",
     },
     # Compliment moment scene — for reviewer cards
+    # CRITICAL: NO bottle. Real bottle gets composited via Pillow.
     "compliment-brunch": {
-        "ref": True,
+        "ref": False,
         "prompt": "A young woman in her mid-20s at a sunlit brunch table, "
                   "her friend leaning in close to ask 'what are you wearing?', "
-                  "warm candid moment, both smiling. Cream linen, fresh "
-                  "flowers, latte cups, golden afternoon light. The bottle "
-                  "shown in the reference is visible on the table. "
-                  "Photographed in Phlur / Sol de Janeiro editorial style. "
-                  "Square 1:1, no text.",
+                  "warm candid moment, both smiling. Cream linen tablecloth, "
+                  "fresh pink peonies in a vase, two small espresso cups, a "
+                  "single fresh strawberry on the table — leave a clear empty "
+                  "spot in the center-front of the table. Golden afternoon "
+                  "light. Phlur / Sol de Janeiro editorial style. Square 1:1. "
+                  "NO bottle, NO product, NO container, NO logo anywhere.",
     },
     # Hand spritzing moment
     "hand-spritz": {
-        "ref": True,
+        "ref": False,
         "prompt": "Editorial beauty shot — close-up of a young woman's wrist "
-                  "and hand, mid-spritz, fine mist droplets visible in soft "
-                  "backlight, soft pink seamless background. The bottle shown "
-                  "in the reference is in her other hand. Magazine fragrance "
-                  "commercial style, shallow depth of field. Square 1:1.",
+                  "and hand mid-spritz, fine pink mist droplets visible in "
+                  "soft backlight, soft pink seamless background. Her other "
+                  "hand is visible to the right with palm open and fingers "
+                  "loosely curled, ready to hold something but EMPTY. Magazine "
+                  "fragrance commercial style, shallow depth of field. "
+                  "Square 1:1. NO bottle, NO product, NO container in any "
+                  "hand. Just the gesture and the mist.",
     },
     # Bathroom shelf flatlay
     "bathroom-shelf": {
-        "ref": True,
+        "ref": False,
         "prompt": "Top-down flatlay of a millennial bathroom counter — "
-                  "the bottle shown in the reference (Berry Obsessed mist) "
-                  "centered, surrounded by other minimalist beauty items: "
-                  "ceramic dish, gold tweezers, small succulent, eyelet "
-                  "linen towel, and a tinted lip balm. White marble surface, "
-                  "soft window light from above. Editorial flatlay style. "
-                  "Square 1:1, no text.",
+                  "ceramic dish with gold tweezers, small succulent in a "
+                  "terracotta pot, eyelet linen towel, a tinted lip balm "
+                  "tube, a folded eye mask. White marble surface with soft "
+                  "window light from above. Leave a clear empty space in "
+                  "the LEFT-CENTER of the composition (large enough for a "
+                  "tall mist bottle). Editorial flatlay style. Square 1:1. "
+                  "NO bottle, NO mist, NO product, NO container, NO logo.",
     },
     # Ingredient macros (no reference needed)
     "ingredient-ha": {
@@ -164,86 +176,94 @@ PROMPTS = {
     # BERRY-CINEMATIC SET — magazine-cover energy
     # Editorial fashion, hyper-saturated, conversion ad creative
     # ──────────────────────────────────────────────────────
+    # Editorial scenes — no bottle in shot. Real bottle composited via Pillow.
     "berry-vogue-portrait": {
-        "ref": True,
+        "ref": False,
         "prompt": "High-fashion editorial portrait — young woman early 20s, "
                   "bold hot-pink eyeshadow, glossy lips, dewy luminous skin, "
-                  "diamond-stud earrings, holding the EveryMood Berry "
-                  "Obsessed bottle from the reference image close to her "
-                  "cheek. Saturated magenta backdrop, single hard rim light "
-                  "from upper left, slight specular highlight on bottle. "
-                  "Vogue Beauty cover energy. Hyper-real skin texture. "
-                  "Square 1:1, no text overlays, no logos, no watermarks.",
+                  "diamond-stud earrings, head tilted toward the LEFT side "
+                  "of frame with one hand raised near her left cheek but "
+                  "fingers curled loosely as if holding something. Saturated "
+                  "magenta backdrop. Single hard rim light from upper left. "
+                  "Vogue Beauty cover energy. Square 1:1. NO bottle, NO "
+                  "product, NO container in her hand or anywhere visible. "
+                  "Empty hand gesture only.",
     },
     "berry-juice-splash": {
-        "ref": True,
-        "prompt": "Cinematic macro frozen-motion shot — the EveryMood Berry "
-                  "Obsessed bottle from reference centered, pink mist and "
-                  "strawberry juice droplets exploding outward in 360 around "
-                  "the bottle, fresh strawberry halves suspended mid-air, a "
-                  "few raspberries and rose petals captured in flight. Deep "
-                  "magenta-to-cream gradient backdrop, dramatic studio strobe "
-                  "lighting, super-sharp 1/8000s shutter feel. Beauty product "
-                  "campaign style. Square 1:1, no text.",
+        "ref": False,
+        "prompt": "Cinematic macro frozen-motion shot — pink mist and "
+                  "strawberry juice droplets exploding outward in a 360-degree "
+                  "splash around the EMPTY CENTER of the frame, fresh "
+                  "strawberry halves suspended mid-air, a few raspberries and "
+                  "rose petals captured in flight. Deep magenta-to-cream "
+                  "gradient backdrop. Dramatic studio strobe lighting. "
+                  "Super-sharp 1/8000s shutter feel. Square 1:1. CRUCIAL: "
+                  "leave the center of the splash COMPLETELY EMPTY — no "
+                  "bottle, no product, no container in the center.",
     },
     "berry-bedside-ritual": {
-        "ref": True,
-        "prompt": "Editorial lifestyle still-life — the bottle from reference "
-                  "on a crumpled raspberry-pink silk pillowcase, beside a "
-                  "small ceramic espresso cup, an open hardcover book "
-                  "face-down, a single strawberry, soft morning light "
-                  "streaming from a window above-left. Cozy intimate "
-                  "millennial bedroom feel. Phlur / Glossier campaign "
-                  "aesthetic. Square 1:1, shallow depth of field, no text.",
+        "ref": False,
+        "prompt": "Editorial lifestyle still-life — crumpled raspberry-pink "
+                  "silk pillowcase with a small ceramic espresso cup, an "
+                  "open hardcover book face-down, a single fresh strawberry, "
+                  "and a folded eye mask. Soft morning light from a window "
+                  "above-left. Leave clear EMPTY space in the upper-left of "
+                  "the pillowcase composition (about 30% of the frame). Cozy "
+                  "intimate millennial bedroom feel. Square 1:1, shallow "
+                  "depth of field. NO bottle, NO mist, NO product anywhere.",
     },
     "berry-vanity-getting-ready": {
-        "ref": True,
-        "prompt": "Top-down vanity flatlay shot — the bottle from reference "
-                  "centered among scattered going-out essentials: rose-gold "
-                  "compact mirror open, pink lip gloss tube uncapped, hoop "
-                  "earrings in a small dish, a fresh strawberry, a swatch "
-                  "of pink eyeshadow on a tissue. Pearl-pink marble counter, "
-                  "warm filament bulb light from above. 'Getting ready' "
-                  "narrative. Square 1:1, no text.",
+        "ref": False,
+        "prompt": "Top-down vanity flatlay shot — scattered going-out "
+                  "essentials: rose-gold compact mirror open, pink lip gloss "
+                  "tube uncapped, hoop earrings in a small dish, a fresh "
+                  "strawberry, a small swatch of pink eyeshadow on a tissue, "
+                  "a folded silk scrunchie. Pearl-pink marble counter. Warm "
+                  "filament bulb light from above. Leave clear EMPTY space "
+                  "in the CENTER of the composition (~25% of the frame). "
+                  "Square 1:1. NO bottle, NO mist, NO product, NO container.",
     },
     "berry-poolside-club": {
-        "ref": True,
-        "prompt": "Lifestyle editorial — the bottle from reference resting "
-                  "on a bright pink inflatable pool float in a sun-drenched "
-                  "rooftop pool at golden hour, water sparkles, fresh "
-                  "strawberries floating nearby in the pool, a hand reaching "
-                  "out from the water just visible at the edge of frame. "
-                  "Warm pink-orange sunset palette. Sol de Janeiro x Phlur "
-                  "summer campaign visual language. Square 1:1, no text.",
+        "ref": False,
+        "prompt": "Lifestyle editorial — bright pink inflatable pool float "
+                  "in a sun-drenched rooftop pool at golden hour, water "
+                  "sparkles, fresh strawberries floating nearby, a hand "
+                  "reaching out from the water just visible at the edge of "
+                  "frame. Warm pink-orange sunset palette. Leave a clear "
+                  "EMPTY area on the float surface (top center). Square 1:1. "
+                  "NO bottle, NO mist, NO product, NO container.",
     },
     "berry-hair-toss-mist": {
-        "ref": True,
+        "ref": False,
         "prompt": "Cinematic frozen-motion beauty shot — young woman "
-                  "mid-hair-toss with long dark glossy hair flying in an arc, "
-                  "fine pink mist droplets visible from the bottle in the "
-                  "reference (held in her other hand), backlit by a hot-pink "
-                  "studio light, deep magenta backdrop. Action beauty "
-                  "commercial energy, super-sharp shutter. Square 1:1, no "
-                  "text.",
+                  "mid-hair-toss with long dark glossy hair flying in an "
+                  "arc, fine pink mist droplets visible suspended in the "
+                  "air, her other hand raised at chest level with fingers "
+                  "loosely curled. Backlit by hot-pink studio light, deep "
+                  "magenta backdrop. Action beauty commercial energy. "
+                  "Square 1:1. NO bottle, NO product, NO container in either "
+                  "hand. Just the hair, the mist, the gesture.",
     },
     "berry-farmers-market": {
-        "ref": True,
+        "ref": False,
         "prompt": "Lifestyle editorial — flatlay of an open canvas tote bag "
                   "spilling fresh strawberries, raspberries, and pink "
-                  "peonies, with the bottle from reference nestled among "
-                  "the produce. Soft natural overhead market light, warm "
-                  "wood plank surface. Farmer's market Saturday morning "
-                  "feel. Magazine still-life style. Square 1:1, no text.",
+                  "peonies. Soft natural overhead market light, warm wood "
+                  "plank surface. Leave clear EMPTY space inside the tote, "
+                  "right-center of the composition (~25% of frame), nestled "
+                  "among the produce — a natural slot for a tall bottle. "
+                  "Square 1:1. NO bottle, NO mist, NO product visible.",
     },
     "berry-pink-on-pink": {
-        "ref": True,
+        "ref": False,
         "prompt": "Hyper-saturated fashion editorial — young woman in a "
                   "bright fuchsia silk slip dress against a fuchsia "
-                  "seamless backdrop, holding the bottle from reference "
-                  "to her cheek with a soft smile, pink shimmer eyeshadow, "
-                  "single key light bouncing through pink gel filter. "
-                  "Bold pink-on-pink monochromatic energy. Fashion campaign "
-                  "style. Square 1:1, no text overlays, no logos.",
+                  "seamless backdrop, head tilted left, one hand raised "
+                  "near her cheek with fingers loosely curled as if holding "
+                  "something. Pink shimmer eyeshadow, soft smile. Single key "
+                  "light through pink gel filter. Bold pink-on-pink "
+                  "monochromatic energy. Square 1:1. NO bottle, NO product, "
+                  "NO container in her hand. Empty gesture only.",
     },
 }
 
