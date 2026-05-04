@@ -78,24 +78,26 @@ PROMPTS = {
     # CRITICAL: No bottle, no product, no container in shot. Pills label cells.
     "hair-before": {
         "ref": False,
-        "prompt": "Editorial beauty close-up of a young woman's hair showing "
-                  "frizziness, dryness, split ends, dull texture, slightly "
-                  "tangled. Soft cream background, flat studio lighting. "
-                  "Used in beauty commercial as 'before treatment' shot. "
-                  "HAIR ONLY — absolutely no bottle, no product, no container, "
-                  "no mist, no spray, no logo, no packaging, no jar visible. "
-                  "Just the model and her hair. Square 1:1.",
+        "prompt": "Editorial beauty close-up of a young woman with FRIZZY, "
+                  "DRY, dull strawberry-blonde hair, split ends, slightly "
+                  "tangled, wind-swept messy texture. Head tilted down slightly. "
+                  "Soft cream-pink background, flat studio lighting. Beauty "
+                  "commercial 'before treatment' shot — only the model and her "
+                  "damaged hair. ABSOLUTELY NO bottle, NO product, NO container, "
+                  "NO mist, NO logo, NO jar, NO packaging, NO label of any kind "
+                  "anywhere in the frame. Pure portrait. Square 1:1.",
     },
     "hair-after": {
-        "ref": False,
-        "prompt": "Editorial beauty close-up of a young woman's flowing dark "
-                  "hair, glossy and smooth, individual strands defined, "
-                  "treatment-finished texture, single subtle pink streak detail. "
-                  "Soft pink seamless background, studio softbox lighting. "
-                  "Magazine commercial 'after' look. HAIR ONLY — absolutely no "
-                  "bottle, no product, no container, no mist, no spray, no logo, "
-                  "no packaging visible anywhere in frame. Just the model and "
-                  "her hair. Square 1:1.",
+        "ref": True,
+        "prompt": "Editorial beauty close-up of a young woman with long glossy "
+                  "dark hair and a single hot-pink streak, mid-spritz, fine "
+                  "pink mist droplets visible. Her hand visibly grips the "
+                  "Berry Obsessed bottle (clear glass body with pink-tinted "
+                  "liquid, white spray cap, cream label with red 'EveryMood' "
+                  "text and 'Berry Obsessed' subline) — bottle clearly held in "
+                  "frame at chest level, spray nozzle aimed at her hair. Soft "
+                  "pink seamless background. Magazine fragrance commercial "
+                  "'after' shot. Square 1:1.",
     },
     # Skin glow before/after
     "skin-before": {
